@@ -5,7 +5,7 @@ Console.WriteLine(Simpson(1, 2, 1000000));
 Console.WriteLine(MonteCarlo(1, 2, 50000));
 
 
-static double F(double x) // Интегрируемая фунция ы отдельном методе
+static double F(double x) // Интегрируемая фунция в отдельном методе
 {
     return -1 * Math.Tan(Math.Cos(2 * x));
 }
