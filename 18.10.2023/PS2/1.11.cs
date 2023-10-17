@@ -15,5 +15,6 @@ static double Pow(double x, double a, double eps = 0)
         currentTerm *= (a - 1) * Math.Log(x) / k;
         k++;
     }
+    System.Console.WriteLine(k);
     return Math.Round(res, 8);
 }
