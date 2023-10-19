@@ -5,13 +5,13 @@ Console.WriteLine(Pow(x, a, eps));
 
 static double Pow(double x, double a, double eps = 0)
 {
-    double currentTerm = x, pastTerm = 1;
+    double currentTerm = x;
+    double check = Math.Pow(x, a);
     int k = 1;
     double res = 0;
-    while (Math.Abs(currentTerm - pastTerm) > eps)
+    while (Math.Abs(check - res) > eps)
     {
         res += currentTerm;
-        pastTerm = currentTerm;
         currentTerm *= (a - 1) * Math.Log(x) / k;
         k++;
     }
