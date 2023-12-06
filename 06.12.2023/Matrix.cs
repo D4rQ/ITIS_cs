@@ -68,7 +68,7 @@ namespace ConsoleApp1
 
         public static Matrix operator +(Matrix a, Matrix b)
         {
-            if (a.rows != b.rows || a.columns != b.columns)
+            if (a.rows > b.rows || a.columns > b.columns)
                 throw new ArgumentException("Размерности матриц должны быть одинаковыми");
             var res = new Matrix(a.rows, a.columns);
             for (int i = 0; i < a.rows; i++)
@@ -81,7 +81,7 @@ namespace ConsoleApp1
 
         public static Matrix operator -(Matrix a, Matrix b)
         {
-            if (a.rows != b.rows || a.columns != b.columns)
+            if (a.rows > b.rows || a.columns > b.columns)
                 throw new ArgumentException("Размерности матриц должны быть одинаковыми");
             var res = new Matrix(a.rows, a.columns);
             for (int i = 0; i < a.rows; i++)
@@ -94,7 +94,7 @@ namespace ConsoleApp1
 
         public static Matrix operator *(Matrix a, Matrix b)
         {
-            if (a.columns != b.rows)
+            if (a.columns > b.rows)
                 throw new ArgumentException("Умножаются только матрицы размерностей m x n и n x k");
             var res = new Matrix(a.rows, b.columns);
             for (int i = 0; i < a.rows; i++)
@@ -139,16 +139,26 @@ namespace ConsoleApp1
         {
             var max = int.MinValue;
             var min = int.MaxValue;
+            var maxIndex = 0;
+            var minIndex = 0;
 
             for (int i = 0; i < rows; i++) 
             {
                 int sum = 0;
                 for (int j = 0; j < columns; j++)
                     sum += matrix[i, j];
-                if (sum > max) max = i;
-                if (sum < min) min = i;
+                if (sum > max)
+                {
+                    max = sum;
+                    maxIndex = i;
+                }
+                if (sum < min)
+                {
+                    min = sum;
+                    minIndex = i;
+                }
             }
-            Swap(max, min);
+            Swap(maxIndex, minIndex);
         }
     }
 }
